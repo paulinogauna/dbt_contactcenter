@@ -1,7 +1,7 @@
 sources:
   - name: raw
     tables:
-      - name: stg_dim_account
+      - name: dim_account
         columns:
           - name: account_id
             data_type: number
@@ -18,7 +18,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_dim_agent
+      - name: dim_agent
         columns:
           - name: agent_id
             data_type: number
@@ -35,7 +35,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_dim_category
+      - name: dim_category
         columns:
           - name: category_id
             data_type: number
@@ -53,7 +53,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_dim_customer
+      - name: dim_customer
         columns:
           - name: customer_id
             data_type: number
@@ -80,7 +80,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_dim_priority
+      - name: dim_priority
         columns:
           - name: priority_id
             data_type: number
@@ -91,7 +91,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_dim_product
+      - name: dim_product
         columns:
           - name: product_id
             data_type: number
@@ -100,7 +100,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_dim_region
+      - name: dim_region
         columns:
           - name: region_id
             data_type: number
@@ -109,7 +109,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_dim_status
+      - name: dim_status
         columns:
           - name: status_id
             data_type: number
@@ -120,7 +120,7 @@ sources:
           - name: loaded_at
             data_type: timestamp_ntz
 
-      - name: stg_fact_ticket
+      - name: fact_ticket
         columns:
           - name: ticket_id
             data_type: number
