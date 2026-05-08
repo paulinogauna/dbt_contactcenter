@@ -1,0 +1,168 @@
+sources:
+  - name: raw
+    tables:
+      - name: stg_dim_account
+        columns:
+          - name: account_id
+            data_type: number
+          - name: account_name
+            data_type: varchar
+          - name: account_segment
+            data_type: varchar
+          - name: subscription_type
+            data_type: varchar
+          - name: payment_method
+            data_type: varchar
+          - name: region_id
+            data_type: number
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_dim_agent
+        columns:
+          - name: agent_id
+            data_type: number
+          - name: agent_name
+            data_type: varchar
+          - name: agent_email
+            data_type: varchar
+          - name: region_id
+            data_type: number
+          - name: hire_date
+            data_type: date
+          - name: is_active
+            data_type: boolean
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_dim_category
+        columns:
+          - name: category_id
+            data_type: number
+          - name: category_name
+            data_type: varchar
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: dim_channel
+        columns:
+          - name: channel_id
+            data_type: number
+          - name: channel_name
+            data_type: varchar
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_dim_customer
+        columns:
+          - name: customer_id
+            data_type: number
+          - name: account_id
+            data_type: number
+          - name: customer_name
+            data_type: varchar
+          - name: customer_email
+            data_type: varchar
+          - name: customer_age
+            data_type: number
+          - name: customer_gender
+            data_type: varchar
+          - name: customer_tenure_months
+            data_type: number
+          - name: language
+            data_type: varchar
+          - name: preferred_contact_time
+            data_type: varchar
+          - name: operating_system
+            data_type: varchar
+          - name: browser
+            data_type: varchar
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_dim_priority
+        columns:
+          - name: priority_id
+            data_type: number
+          - name: priority_name
+            data_type: varchar
+          - name: priority_level
+            data_type: number
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_dim_product
+        columns:
+          - name: product_id
+            data_type: number
+          - name: product_name
+            data_type: varchar
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_dim_region
+        columns:
+          - name: region_id
+            data_type: number
+          - name: region_name
+            data_type: varchar
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_dim_status
+        columns:
+          - name: status_id
+            data_type: number
+          - name: status_name
+            data_type: varchar
+          - name: is_terminal
+            data_type: boolean
+          - name: loaded_at
+            data_type: timestamp_ntz
+
+      - name: stg_fact_ticket
+        columns:
+          - name: ticket_id
+            data_type: number
+          - name: customer_id
+            data_type: number
+          - name: account_id
+            data_type: number
+          - name: product_id
+            data_type: number
+          - name: category_id
+            data_type: number
+          - name: region_id
+            data_type: number
+          - name: channel_id
+            data_type: number
+          - name: priority_id
+            data_type: number
+          - name: status_id
+            data_type: number
+          - name: agent_id
+            data_type: number
+          - name: issue_description
+            data_type: varchar
+          - name: resolution_notes
+            data_type: varchar
+          - name: first_response_time_hours
+            data_type: number
+          - name: resolution_time_hours
+            data_type: number
+          - name: ticket_created_date
+            data_type: date
+          - name: ticket_resolved_date
+            data_type: date
+          - name: escalated
+            data_type: boolean
+          - name: sla_breached
+            data_type: boolean
+          - name: issue_complexity_score
+            data_type: number
+          - name: customer_satisfaction_score
+            data_type: number
+          - name: previous_tickets
+            data_type: number
+          - name: loaded_at
+            data_type: timestamp_ntz
