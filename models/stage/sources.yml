@@ -1,5 +1,7 @@
 sources:
   - name: raw
+    database: CONTACT_CENTER_DB
+    schema: RAW
     tables:
       - name: dim_account
         columns:
