@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: int_agent
+    description: agent-level reference data used to describe each support agent and their regional, employment, and active status attributes.
+    columns:
+      - name: agent_id
+        description: unique identifier for the agent.
+      - name: agent_name
+        description: full name of the agent.
+      - name: agent_email
+        description: business email address of the agent.
+      - name: agent_region_id
+        description: identifier for the region associated with the agent.
+      - name: agent_hire_date
+        description: date when the agent joined the company.
+      - name: agent_is_active
+        description: indicates whether the agent is currently active.
+      - name: agent_loaded_at
+        description: timestamp when the agent record was loaded into the platform.

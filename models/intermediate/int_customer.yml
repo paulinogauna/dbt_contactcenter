@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: int_customer
+    description: customer-level reference data used to describe each customer and their account, profile, communication, and device attributes.
+    columns:
+      - name: customer_id
+        description: unique identifier for the customer.
+      - name: customer_account_id
+        description: identifier for the account associated with the customer.
+      - name: customer_name
+        description: full name of the customer.
+      - name: customer_email
+        description: email address of the customer.
+      - name: customer_age
+        description: age of the customer.
+      - name: customer_gender
+        description: gender of the customer.
+      - name: customer_tenure_months
+        description: number of months the customer has been with the company.
+      - name: customer_language
+        description: preferred language of the customer.
+      - name: customer_preferred_contact_time
+        description: preferred time window for contacting the customer.
+      - name: customer_operating_system
+        description: operating system the customer typically uses.
+      - name: customer_browser
+        description: web browser the customer typically uses.
+      - name: customer_loaded_at
+        description: timestamp when the customer record was loaded into the platform.

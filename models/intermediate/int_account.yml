@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: int_account
+    description: account-level reference data used to describe each customer account and its subscription, payment, and regional attributes.
+    columns:
+      - name: account_id
+        description: unique identifier for the account.
+        tests:
+          - unique
+          - not_null
+      - name: account_name
+        description: business name associated with the account.
+        tests:
+          - not_null
+      - name: account_segment
+        description: business segment the account belongs to.
+        tests:
+          - relationships:
+              field: ACCOUNT_SEGMENT
+              to: ref('Account_Segments')
+      - name: account_subscription_type
+        description: subscription plan or service tier assigned to the account.
+        tests:
+          - relationships:
+              field: SUBSCRIPTION_TYPE
+              to: ref('Subscription_Type')
+      - name: account_payment_method
+        description: payment method the account uses for billing.
+        tests:
+          - relationships:
+              field: PAYMENT_METHOD
+              to: ref('payment_method')
+      - name: account_region_id
+        description: identifier for the region associated with the account.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('int_region')
+                field: region_id
+      - name: account_loaded_at
+        description: timestamp when the account record was loaded into the platform.
+        tests:
+          - not_null

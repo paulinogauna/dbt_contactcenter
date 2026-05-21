@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: int_status
+    description: status-level reference data used to describe the business state and closure status of records.
+    columns:
+      - name: status_id
+        description: unique identifier for the status.
+      - name: status_name
+        description: business name of the status.
+      - name: is_terminal
+        description: indicates whether the status represents a final state.
+      - name: status_loaded_at
+        description: timestamp when the status record was loaded into the platform.

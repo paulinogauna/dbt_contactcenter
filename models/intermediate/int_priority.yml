@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: int_priority
+    description: priority-level reference data used to describe the urgency and ranking assigned to records.
+    columns:
+      - name: priority_id
+        description: unique identifier for the priority.
+      - name: priority_name
+        description: business name of the priority.
+      - name: priority_level
+        description: relative ranking of the priority.
+      - name: priority_loaded_at
+        description: timestamp when the priority record was loaded into the platform.

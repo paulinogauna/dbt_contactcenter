@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_product
+    description: product-level reference data used to describe the products associated with business activity.
+    columns:
+      - name: product_id
+        description: unique identifier for the product.
+      - name: product_name
+        description: business name of the product.
+      - name: product_loaded_at
+        description: timestamp when the product record was loaded into the platform.

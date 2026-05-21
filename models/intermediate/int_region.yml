@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_region
+    description: region-level reference data used to describe geographic regions in the business.
+    columns:
+      - name: region_id
+        description: unique identifier for the region.
+      - name: region_name
+        description: business name of the region.
+      - name: region_loaded_at
+        description: timestamp when the region record was loaded into the platform.

@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_channel
+    description: channel-level reference data used to describe the business channel through which interactions occur.
+    columns:
+      - name: channel_id
+        description: unique identifier for the channel.
+      - name: channel_name
+        description: business name of the channel.
+      - name: channel_loaded_at
+        description: timestamp when the channel record was loaded into the platform.
