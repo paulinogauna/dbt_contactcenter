@@ -1,4 +1,5 @@
-{{ get_latest_records(
+with account as (
+    {{ get_latest_records(
     input_table=ref('stg_dim_account'),
     partition_by=['account_id'],
     select_columns=[
@@ -7,8 +8,18 @@
         'account_segment',
         'subscription_type',
         'payment_method',
-        'region_id',
+        'region_id' , 
         'loaded_at'
     ],
     order_by_column='loaded_at'
 ) }}
+)
+select
+    account_id,
+    account_name,
+    account_segment,
+    subscription_type as account_subscription_type,
+    payment_method as account_payment_method,
+    region_id as account_region_id,
+    loaded_at as account_loaded_at
+from account

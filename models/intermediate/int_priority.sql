@@ -1,4 +1,4 @@
-{{ get_latest_records(
+with priority as ({{ get_latest_records(
     input_table=ref('stg_dim_priority'),
     partition_by=['priority_id'],
     select_columns=[
@@ -8,4 +8,10 @@
         'loaded_at'
     ],
     order_by_column='loaded_at'
-) }}
+) }})
+select
+    priority_id,
+    priority_name,
+    priority_level,
+    loaded_at as priority_loaded_at
+from priority
