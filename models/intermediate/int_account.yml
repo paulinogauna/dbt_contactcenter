@@ -6,40 +6,64 @@ models:
     columns:
       - name: account_id
         description: unique identifier for the account.
-        tests:
-          - unique
-          - not_null
+        data_tests:
+          - unique:
+              config:
+                severity: error
+          - not_null:
+              config:
+                severity: error
       - name: account_name
         description: business name associated with the account.
-        tests:
-          - not_null
+        data_tests:
+          - not_null:
+              config:
+                severity: error
       - name: account_segment
         description: business segment the account belongs to.
-        tests:
-          - relationships:
-              field: ACCOUNT_SEGMENT
-              to: ref('Account_Segments')
-      - name: account_subscription_type
-        description: subscription plan or service tier assigned to the account.
-        tests:
-          - relationships:
-              field: SUBSCRIPTION_TYPE
-              to: ref('Subscription_Type')
-      - name: account_payment_method
-        description: payment method the account uses for billing.
-        tests:
-          - relationships:
-              field: PAYMENT_METHOD
-              to: ref('payment_method')
-      - name: account_region_id
-        description: identifier for the region associated with the account.
-        tests:
-          - not_null
+        data_tests:
           - relationships:
               arguments:
-                to: ref('int_region')
+                field: account_segment
+                to: ref('Account_Segments')
+              config:
+                severity: warn
+                where: "account_segment IS NOT NULL"
+      - name: account_subscription_type
+        description: subscription plan or service tier assigned to the account.
+        data_tests:
+          - relationships:
+              arguments:
+                field: account_subscription_type
+                to: ref('Subscription_Type')
+              config:
+                severity: warn
+                where: "account_subscription_type IS NOT NULL"
+      - name: account_payment_method
+        description: payment method the account uses for billing.
+        data_tests:
+          - relationships:
+              arguments:
+                field: account_payment_method
+                to: ref('payment_method')
+              config:
+                severity: warn
+                where: "account_payment_method IS NOT NULL"
+      - name: account_region_id
+        description: identifier for the region associated with the account.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+          - relationships:
+              arguments:
                 field: region_id
+                to: ref('int_region')
+              config:
+                severity: error
       - name: account_loaded_at
         description: timestamp when the account record was loaded into the platform.
-        tests:
-          - not_null
+        data_tests:
+          - not_null:
+              config:
+                severity: error

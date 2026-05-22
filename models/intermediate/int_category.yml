@@ -6,7 +6,22 @@ models:
     columns:
       - name: category_id
         description: unique identifier for the category.
+        data_tests:
+          - unique:
+              config:
+                severity: error
+          - not_null:
+              config:
+                severity: error
       - name: category_name
         description: business name of the category.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
       - name: category_loaded_at
         description: timestamp when the category record was loaded into the platform.
+        data_tests:
+          - not_null:
+              config:
+                severity: error

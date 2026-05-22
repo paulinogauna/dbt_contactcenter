@@ -6,7 +6,22 @@ models:
     columns:
       - name: region_id
         description: unique identifier for the region.
+        data_tests:
+          - unique:
+              config:
+                severity: error
+          - not_null:
+              config:
+                severity: error
       - name: region_name
         description: business name of the region.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
       - name: region_loaded_at
         description: timestamp when the region record was loaded into the platform.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
