@@ -42,5 +42,7 @@ models:
     # Applies to all files under models/example/
     stage: 
        +materialized: view
-       +intermediate: table
-       +mart: table
+    intermediate:
+      +materialized: table
+    mart:
+      +materialized: table
