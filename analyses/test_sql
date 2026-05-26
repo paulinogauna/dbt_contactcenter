@@ -1,3 +1,0 @@
-with int_ticket as (
-select * from {{ ref('int_ticket') }} as int_ticket)
-select * from int_ticket
