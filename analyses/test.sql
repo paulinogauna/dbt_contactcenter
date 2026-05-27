@@ -1,9 +1,6 @@
 with int_ticket as (
-<<<<<<< HEAD
+
 select * from {{ ref('Mart_fact_ticket') }} ),
-=======
-select * from {{ ref('mart_fact_ticket') }} ),
->>>>>>> e6b46c2c4a04cefa6a7ed7fc14d14101b205c008
 
 test as (
 select count(*) as count_ticket ,
