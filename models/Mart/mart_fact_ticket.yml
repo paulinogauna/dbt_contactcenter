@@ -1,0 +1,125 @@
+version: 2
+
+models:
+  - name: mart_fact_ticket
+    description: fact table with enriched ticket lifecycle attributes and descriptive dimensional context for contact center analysis.
+    columns:
+      - name: ticket_id
+        description: unique identifier for the support ticket.
+
+      - name: ticket_customer_id
+        description: identifier for the customer associated with the ticket.
+
+      - name: ticket_customer_name
+        description: name of the customer associated with the ticket.
+
+      - name: ticket_customer_email
+        description: email address of the customer associated with the ticket.
+
+      - name: ticket_account_id
+        description: identifier for the account associated with the ticket.
+
+      - name: ticket_account_name
+        description: name of the account associated with the ticket.
+
+      - name: ticket_account_segment
+        description: business segment assigned to the account associated with the ticket.
+
+      - name: ticket_account_subscription_type
+        description: subscription type assigned to the account associated with the ticket.
+
+      - name: ticket_product_id
+        description: identifier for the product associated with the ticket.
+
+      - name: ticket_product_name
+        description: name of the product associated with the ticket.
+
+      - name: ticket_category_id
+        description: identifier for the category associated with the ticket.
+
+      - name: ticket_category_name
+        description: name of the category associated with the ticket.
+
+      - name: ticket_region_id
+        description: identifier for the region associated with the ticket.
+
+      - name: ticket_region_name
+        description: name of the region associated with the ticket.
+
+      - name: ticket_channel_id
+        description: identifier for the channel through which the ticket was created.
+
+      - name: ticket_channel_name
+        description: name of the channel through which the ticket was created.
+
+      - name: ticket_priority_id
+        description: identifier for the priority assigned to the ticket.
+
+      - name: ticket_priority_name
+        description: name of the priority assigned to the ticket.
+
+      - name: ticket_priority_level
+        description: numeric or ordered level associated with the ticket priority.
+
+      - name: ticket_status_id
+        description: identifier for the current status assigned to the ticket.
+
+      - name: ticket_status_name
+        description: name of the current status assigned to the ticket.
+
+      - name: ticket_status_is_terminal
+        description: indicates whether the current ticket status is terminal.
+
+      - name: ticket_agent_id
+        description: identifier for the agent assigned to the ticket.
+
+      - name: ticket_agent_name
+        description: name of the agent assigned to the ticket.
+
+      - name: ticket_issue_description
+        description: free-text description of the issue reported in the ticket.
+
+      - name: ticket_resolution_notes
+        description: free-text notes describing how the ticket was resolved.
+
+      - name: ticket_first_response_time_hours
+        description: elapsed time in fractional hours between ticket creation and first response.
+
+      - name: ticket_first_response_time_minutes
+        description: elapsed time in minutes between ticket creation and first response.
+
+      - name: ticket_first_response_time_seconds
+        description: elapsed time in seconds between ticket creation and first response.
+
+      - name: ticket_resolution_time_hours
+        description: elapsed time in fractional hours between ticket creation and resolution.
+
+      - name: ticket_resolution_time_minutes
+        description: elapsed time in minutes between ticket creation and resolution.
+
+      - name: ticket_resolution_time_seconds
+        description: elapsed time in seconds between ticket creation and resolution.
+
+      - name: ticket_created_date
+        description: timestamp when the ticket was created.
+
+      - name: ticket_resolved_date
+        description: timestamp when the ticket was resolved.
+
+      - name: ticket_escalated
+        description: indicates whether the ticket was escalated during its lifecycle.
+
+      - name: ticket_sla_breached
+        description: indicates whether the ticket breached its SLA target.
+
+      - name: ticket_issue_complexity_score
+        description: numeric score representing the estimated complexity of the issue.
+
+      - name: ticket_customer_satisfaction_score
+        description: numeric customer satisfaction score captured for the ticket.
+
+      - name: ticket_previous_tickets
+        description: number of prior tickets associated with the same customer or account context.
+
+      - name: ticket_loaded_at
+        description: timestamp when the ticket record was loaded into the platform.
