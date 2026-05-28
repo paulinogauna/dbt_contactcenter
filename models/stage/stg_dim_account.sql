@@ -1,5 +1,4 @@
 
-
 with source as (
 
     select * from {{ source('raw', 'dim_account') }}
