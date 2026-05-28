@@ -1,3 +1,12 @@
+{{ config(materialized='incremental',
+          incremental_strategy='insert_overwrite',
+          on_schema_change='sync_all_columns',
+          partition_by={
+               'field': 'ticket_loaded_date',
+               'data_type': 'date'
+           })
+         }}
+
 with int_ticket as (
     select * from {{ ref('int_fact_ticket') }}
 ),
@@ -8,7 +17,7 @@ int_account as (
     select * from {{ ref('int_account') }}
 ),
 int_product as (
-    select * from {{ ref('int_product') }}
+    select * from {{ ref('int_current_product') }}
 ),
 int_category as (
     select * from {{ ref('int_category') }}
@@ -69,7 +78,8 @@ select
     ticket_issue_complexity_score,
     ticket_customer_satisfaction_score,
     ticket_previous_tickets,
-    ticket_loaded_at
+    ticket_loaded_at,
+    cast(ticket_loaded_at as date) as ticket_loaded_date
 from int_ticket
 left join int_customer on int_ticket.ticket_customer_id = int_customer.customer_id
 left join int_account on int_ticket.ticket_account_id = int_account.account_id
@@ -80,3 +90,6 @@ left join int_channel on int_ticket.ticket_channel_id = int_channel.channel_id
 left join int_priority on int_ticket.ticket_priority_id = int_priority.priority_id
 left join int_status on int_ticket.ticket_status_id = int_status.status_id
 left join int_agent on int_ticket.ticket_agent_id = int_agent.agent_id
+{% if is_incremental() %}
+where cast(ticket_loaded_at as date) >= (select dateadd(day, -1, max(ticket_loaded_date)) from {{ this }})
+{% endif %}

@@ -1,22 +1,9 @@
-with customer as ({{ get_latest_records(
-    input_table=ref('stg_dim_customer'),
-    partition_by=['customer_id'],
-    select_columns=[
-        'customer_id',
-        'account_id',
-        'customer_name',
-        'customer_email',
-        'customer_age',
-        'customer_gender',
-        'customer_tenure_months',
-        'language',
-        'preferred_contact_time',
-        'operating_system',
-        'browser',
-        'loaded_at'
-    ],
-    order_by_column='loaded_at'
-) }})
+{{ config(
+    materialized='incremental',
+    incremental_strategy='append',
+    on_schema_change='sync_all_columns'
+) }}
+
 select
     customer_id,
     account_id as customer_account_id,
@@ -30,6 +17,11 @@ select
     operating_system as customer_operating_system,
     browser as customer_browser,    
     loaded_at as customer_loaded_at
-from customer
+from stg_dim_customer
+{% if is_incremental() %}
+where loaded_at >= (select dateadd(day, -1, max(customer_loaded_at)) from {{ this }})
+and concat(cast(customer_id as string), '|', cast(loaded_at as string)) 
+    not in (select concat(cast(customer_id as string), '|', cast(customer_loaded_at as string)) from {{ this }})
+{% endif %}
 
 

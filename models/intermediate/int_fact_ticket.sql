@@ -1,3 +1,13 @@
+{{ config(
+    materialized='incremental',
+    incremental_strategy='insert_overwrite',
+    partition_by={
+        'field': 'ticket_created_date',
+        'data_type': 'date'
+    },
+    on_schema_change='sync_all_columns'
+) }}
+
 with stg_ticket as (
     select * from {{ ref('stg_fact_ticket') }}
 )
@@ -28,5 +38,9 @@ select
     issue_complexity_score as ticket_issue_complexity_score,
     customer_satisfaction_score as ticket_customer_satisfaction_score,
     previous_tickets as ticket_previous_tickets,
-    loaded_at as ticket_loaded_at
+    loaded_at as ticket_loaded_at,
+    cast(loaded_at as date) as ticket_loaded_date
 from stg_ticket
+{% if is_incremental() %}
+where cast(loaded_at as date)  >= (select dateadd(day, -1, max(ticket_loaded_date)) from {{ this }})
+{% endif %}

@@ -1,3 +1,10 @@
+{{ config(
+    materialized='incremental',
+    incremental_strategy='delete+insert',
+    unique_key='account_id',
+    on_schema_change='sync_all_columns'
+) }}
+
 with account as (
     {{ get_latest_records(
     input_table=ref('stg_dim_account'),
@@ -23,3 +30,6 @@ select
     region_id as account_region_id,
     loaded_at as account_loaded_at
 from account
+{% if is_incremental() %}
+where loaded_at >= (select dateadd(day, -1, max(account_loaded_at)) from {{ this }})
+{% endif %}

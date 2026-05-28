@@ -1,3 +1,7 @@
+{{config(
+    materialized='view'
+)}}
+
 with product as ({{ get_latest_records(
     input_table=ref('stg_dim_product'),
     partition_by=['product_id'],
@@ -13,3 +17,4 @@ select
     product_name,
     loaded_at as product_loaded_at
 from product
+

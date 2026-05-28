@@ -123,3 +123,5 @@ models:
 
       - name: ticket_loaded_at
         description: timestamp when the ticket record was loaded into the platform.
+      - name: ticket_loaded_date
+        description: date when the ticket record was loaded into the platform, derived from ticket_loaded_at for partitioning purposes.

@@ -45,7 +45,7 @@ models:
                 severity: error
           - relationships:
               arguments:
-                to: ref('int_product')
+                to: ref('int_current_product')
                 field: product_id
               config:
                severity: error
