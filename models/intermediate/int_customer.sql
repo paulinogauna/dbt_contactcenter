@@ -17,7 +17,7 @@ select
     operating_system as customer_operating_system,
     browser as customer_browser,    
     loaded_at as customer_loaded_at
-from stg_dim_customer
+from {{ ref('stg_dim_customer') }}
 {% if is_incremental() %}
 where loaded_at >= (select dateadd(day, -1, max(customer_loaded_at)) from {{ this }})
 and concat(cast(customer_id as string), '|', cast(loaded_at as string)) 
