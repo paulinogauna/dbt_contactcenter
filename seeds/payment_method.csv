@@ -1,0 +1,6 @@
+PAYMENT_METHOD,PAYMENT_METHOD_ID
+Debit Card,1
+Crypto,2
+PayPal,3
+Bank Transfer,4
+Credit Card,5

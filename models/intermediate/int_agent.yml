@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: int_agent
+    description: agent-level reference data used to describe each support agent and their regional, employment, and active status attributes.
+    columns:
+      - name: agent_id
+        description: unique identifier for the agent.
+        data_tests:
+          - unique:
+              config:
+                severity: error 
+          - not_null:
+              config:
+                severity: error 
+      - name: agent_name
+        description: full name of the agent.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: agent_email
+        description: business email address of the agent.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: agent_region_id
+        description: identifier for the region associated with the agent.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn 
+          - relationships:
+              arguments:
+                to: ref('int_region')
+                field: region_id
+              config:
+                severity: error
+                where: "agent_region_id is not null"
+                 
+      - name: agent_hire_date
+        description: date when the agent joined the company.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn 
+
+      - name: agent_is_active
+        description: indicates whether the agent is currently active.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+              config:
+                severity: error
+
+      - name: agent_loaded_at
+        description: timestamp when the agent record was loaded into the platform.
+        data_tests:
+          - not_null:
+              config:
+                severity: error
+

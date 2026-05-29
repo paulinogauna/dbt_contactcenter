@@ -1,0 +1,112 @@
+version: 2
+
+sources:
+  - name: raw
+    database: CONTACT_CENTER_DB
+    schema: RAW
+    tables:
+      - name: dim_account
+        columns:
+          - name: account_id
+          - name: account_name
+          - name: account_segment
+          - name: subscription_type
+          - name: payment_method
+          - name: region_id
+          - name: loaded_at
+
+      - name: dim_agent
+        columns:
+          - name: agent_id
+          - name: agent_name
+          - name: agent_email
+          - name: region_id
+          - name: hire_date
+          - name: is_active
+          - name: loaded_at
+
+      - name: dim_category
+        columns:
+          - name: category_id
+          - name: category_name
+          - name: loaded_at
+
+      - name: dim_channel
+        columns:
+          - name: channel_id
+          - name: channel_name
+          - name: loaded_at
+
+      - name: dim_customer
+        columns:
+          - name: customer_id
+          - name: account_id
+          - name: customer_name
+          - name: customer_email
+          - name: customer_age
+          - name: customer_gender
+          - name: customer_tenure_months
+          - name: language
+          - name: preferred_contact_time
+          - name: operating_system
+          - name: browser
+          - name: loaded_at
+
+      - name: dim_priority
+        columns:
+          - name: priority_id
+          - name: priority_name
+          - name: priority_level
+          - name: loaded_at
+
+      - name: dim_product
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
+        columns:
+          - name: product_id
+          - name: product_name
+          - name: loaded_at
+      - name: dim_region
+        columns:
+          - name: region_id
+          - name: region_name
+          - name: loaded_at
+
+      - name: dim_status
+        columns:
+          - name: status_id
+          - name: status_name
+          - name: is_terminal
+          - name: loaded_at
+
+      - name: fact_ticket
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 3, period: day}
+        columns:
+          - name: ticket_id
+          - name: customer_id
+          - name: account_id
+          - name: product_id
+          - name: category_id
+          - name: region_id
+          - name: channel_id
+          - name: priority_id
+          - name: status_id
+          - name: agent_id
+          - name: issue_description
+          - name: resolution_notes
+          - name: first_response_time_hours
+          - name: resolution_time_hours
+          - name: ticket_created_date
+          - name: ticket_resolved_date
+          - name: escalated
+          - name: sla_breached
+          - name: issue_complexity_score
+          - name: customer_satisfaction_score
+          - name: previous_tickets
+          - name: loaded_at
+        
