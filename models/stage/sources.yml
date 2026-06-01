@@ -14,6 +14,10 @@ sources:
           - name: payment_method
           - name: region_id
           - name: loaded_at
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
 
       - name: dim_agent
         columns:
@@ -24,18 +28,30 @@ sources:
           - name: hire_date
           - name: is_active
           - name: loaded_at
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
 
       - name: dim_category
         columns:
           - name: category_id
           - name: category_name
           - name: loaded_at
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
 
       - name: dim_channel
         columns:
           - name: channel_id
           - name: channel_name
           - name: loaded_at
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
 
       - name: dim_customer
         columns:
@@ -51,6 +67,10 @@ sources:
           - name: operating_system
           - name: browser
           - name: loaded_at
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
 
       - name: dim_priority
         columns:
@@ -58,6 +78,10 @@ sources:
           - name: priority_name
           - name: priority_level
           - name: loaded_at
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
 
       - name: dim_product
         config:
@@ -75,6 +99,10 @@ sources:
           - name: loaded_at
 
       - name: dim_status
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 10, period: day}
         columns:
           - name: status_id
           - name: status_name
