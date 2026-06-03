@@ -92,4 +92,5 @@ left join int_status on int_ticket.ticket_status_id = int_status.status_id
 left join int_agent on int_ticket.ticket_agent_id = int_agent.agent_id
 {% if is_incremental() %}
 where cast(ticket_loaded_at as date) >= (select dateadd(day, -1, max(ticket_loaded_date)) from {{ this }})
+--- incremental comment
 {% endif %}
