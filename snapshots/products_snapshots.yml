@@ -1,0 +1,20 @@
+version: 2
+
+snapshots:
+  - name: stg_dim_product_snapshot
+    relation: ref('stg_dim_product')
+    config:
+      target_database: CONTACT_CENTER_DB
+      target_schema: STAGING
+      strategy: timestamp
+      updated_at: loaded_at
+      unique_key: product_id
+  - name: stg_dim_product_snapshot_check
+    relation: ref('stg_dim_product')
+    config:
+      target_database: CONTACT_CENTER_DB
+      target_schema: STAGING
+      strategy: check
+      unique_key: product_id
+      check_cols:
+        - product_name
